@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## whather
 
-## Getting Started
+Seoul의 날씨를 확인할 수 있는 날씨 앱입니다.
 
-First, run the development server:
+
+## 주요기능
+
+현재 날씨 조회 (기온, 체감온도, 습도, 풍속/풍향 , 대기질_AQI)
+시간별 예보 (3시간 단위, 24시간)
+5일간 주간 예보
+일요일 날짜 강조 표시
+
+## 기술스택
+
+Framework: Next.js 15 (App Router)
+Language: TypeScript
+Styling: Tailwind CSS
+Icons: lucide-react
+API: OpenWeatherMap API (Current Weather, 5 Day Forecast, Air Pollution)
+
+## 폴더구조
+
+whather/
+├── app/
+│   ├── api/
+│   │   └── weather/
+│   │       └── route.ts        # 날씨/예보/대기질 API 통합 호출
+│   └── page.tsx
+├── components/
+│   └── weather/
+│       ├── CurrentWeather.tsx  # 현재 날씨 카드
+│       ├── HourlyForecast.tsx  # 시간별 예보
+│       └── WeeklyForecast.tsx  # 주간 예보
+├── hooks/
+│   └── useWeather.ts           # 날씨 데이터 페칭 커스텀 훅
+└── types/
+    └── weather.ts              # API 응답 타입 정의
+
+
+## 환경변수
+
+.env.local 파일에 아래 값을 추가해야 합니다.
+OPENWEATHER_API_KEY=your_api_key_here
+
+
+## 로컬실행
 
 ```bash
 npm run dev
 # or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
