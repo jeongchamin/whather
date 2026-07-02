@@ -9,7 +9,6 @@ interface Props {
   forecast: ForecastData
 }
 
-
 function getWindDirection(deg: number): string {
   const directions = ['북', '북동', '동', '남동', '남', '남서', '서', '북서']
   const index = Math.round(deg / 45) % 8
@@ -44,6 +43,27 @@ export default function CurrentWeather({ data, air, forecast }: Props) {
     weekday: 'long', 
   })
 
+  const weatherLabelMap: Record<string, string> = {
+    Thunderstorm: '천둥번개',
+    Drizzle: '이슬비',
+    Rain: '비',
+    Snow: '눈',
+    Mist: '안개',
+    Smoke: '연무',
+    Haze: '실안개',
+    Dust: '황사',
+    Fog: '짙은 안개',
+    Sand: '황사',
+    Ash: '화산재',
+    Squall: '돌풍',
+    Tornado: '토네이도',
+    Clear: '맑음',
+    Clouds: '흐림',
+  }
+  function getWeatherLabel(weatherDes: string): string {
+    return weatherLabelMap[weatherDes] ?? weatherDes
+  }
+
   return (
     <div className="text-white">
       <div>
@@ -52,7 +72,7 @@ export default function CurrentWeather({ data, air, forecast }: Props) {
       </div>
 
       <div className="mt-30">
-        <p className="text-md text-[#999999] text-center">{weather[0].description}</p>
+        <p className="text-md text-[#999999] text-center">{getWeatherLabel(weather[0].main)}</p>
         <p className="text-[100px] leading-[110px] text-center">{Math.round(main.temp)}°</p>
         <div className='flex items-center justify-center gap-6 text-[#CCCCCC] mt-2'>
           <div className='flex items-center justify-center gap-1'><ArrowUp size={16} className='text-[#8CC1D8]'/>{todayMin}</div>
