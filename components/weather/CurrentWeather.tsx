@@ -66,22 +66,22 @@ export default function CurrentWeather({ data, air, forecast }: Props) {
           <span className='text-xs text-[#999999]'>습도</span>
           <div className='flex gap-1 justify-center items-end mt-2'>
             <strong className='text-2xl font-normal text-white'>{main.humidity}</strong>
-            <em className='text-xs not-italic pb-1 text-white'>%</em>
+            <em className='text-sm not-italic pb-1 text-white'>%</em>
           </div>
         </div>
 
         <div className='text-center'>
           <span className='text-xs text-[#999999]'>체감온도</span>
-          <div className='flex gap-1 justify-center items-end mt-2'>
+          <div className='flex gap-1 justify-center items-center mt-2'>
             <strong className='text-2xl font-normal text-white'>{Math.round(main.feels_like)}</strong>
-            <em className='text-md not-italic pb-1'>°</em>
+            <em className='text-lg not-italic pb-1'>°</em>
           </div>
         </div>
 
         <div className='text-center'>
           <span className='text-xs text-[#999999]'>{getWindDirection(wind.deg ?? 0)}풍</span>
           <div className='flex gap-1 justify-center items-end mt-2'>
-            <strong className='text-2xl font-normal text-white'>{wind.speed}</strong>
+            <strong className='text-2xl font-normal text-white'>{Math.round(wind.speed)}</strong>
             <em className='text-md not-italic pb-1'>m/s</em>
           </div>
         </div>
